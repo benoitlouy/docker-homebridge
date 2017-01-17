@@ -21,7 +21,8 @@ RUN cd /usr/lib/node_modules/homebridge && \
 RUN cd /usr/lib/node_modules/hap-nodejs/node_modules/mdns && \
     node-gyp BUILDTYPE=Release rebuild
 ENV HOMEBRIDGE_HASS_V 2.0.1
-RUN npm install -g homebridge-homeassistant@${HOMEBRIDGE_HASS_V}
+RUN npm config set unsafe-perm true && \
+    npm install -g homebridge-homeassistant@${HOMEBRIDGE_HASS_V}
 
 RUN mkdir -p /var/run/dbus
 ADD run.sh /root/run.sh
